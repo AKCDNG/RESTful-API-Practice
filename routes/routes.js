@@ -40,6 +40,19 @@ router.get('/getOne/:id', async (req, res) => {
   }
 })
 
+//Get by Name Method
+router.get('/getByName/:name', async (req, res) => {
+  try{
+    const data = await Model.find({
+      name: {$all : req.params.name}
+    })
+    res.json(data)
+  }
+  catch(error) {
+    res.status(500).json({message: error.message})
+  }
+})
+
 //Update by ID Method
 router.patch('/update/:id', async (req, res) => {
   try {
